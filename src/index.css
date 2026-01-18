@@ -1,22 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
+  /* Deep Greens - Forest Palette */
   --dark-green-deep: #010701;
   --dark-green: #040804;
   --dark-green-light: #081008;
   --dark-green-accent: #0c180c;
+  --dark-green-muted: #0a140a;
+  
+  /* Gold - Luxurious Palette */
   --gold: #d4af37;
   --gold-light: #e6c866;
   --gold-dark: #b8960c;
   --gold-muted: #a89045;
+  --gold-soft: rgba(212, 175, 55, 0.15);
+  
+  /* Text Colors */
   --text-gold: #e8d48b;
   --text-light: #c9b896;
-  --overlay-dark: rgba(1, 2, 1, 0.95);
-  --overlay-medium: rgba(4, 8, 4, 0.9);
+  --text-muted: #8a7d5a;
   
-  font-family: 'Roboto Slab', 'Times New Roman', Georgia, serif;
+  /* Overlays */
+  --overlay-dark: rgba(1, 7, 1, 0.95);
+  --overlay-medium: rgba(4, 8, 4, 0.9);
+  --overlay-light: rgba(8, 16, 8, 0.8);
+  
+  /* Typography */
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
   line-height: 1.7;
-  font-weight: 750;
+  font-weight: 500;
 
   color-scheme: dark;
   color: var(--text-gold);
@@ -47,12 +59,28 @@ body {
   overflow-x: hidden;
 }
 
+/* Subtle background texture for body */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 0% 0%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(212, 175, 55, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
 #root {
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
+/* Links */
 a {
   font-weight: 800;
   color: var(--gold);
@@ -62,104 +90,163 @@ a {
 
 a:hover {
   color: var(--gold-light);
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 }
 
+/* Headings - Using Cormorant Garamond for elegance */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 800;
   color: var(--gold);
-  line-height: 1.3;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
 }
 
+h4 {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+}
+
+/* Paragraphs */
 p {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  line-height: 1.8;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  line-height: 1.9;
   color: var(--text-light);
+  font-weight: 600;
 }
 
+/* Buttons */
 button {
-  font-family: 'Roboto Slab', serif;
-  font-size: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.85rem;
   font-weight: 800;
-  padding: 0.7rem 2rem;
+  padding: 1rem 2.5rem;
   background: linear-gradient(135deg, var(--gold-dark), var(--gold));
   color: var(--dark-green-deep);
   border: 2px solid var(--gold);
-  border-radius: 50px;
   cursor: pointer;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+button:hover::before {
+  left: 100%;
 }
 
 button:hover {
   background: transparent;
   color: var(--gold);
-  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.35),
-              inset 0 0 20px rgba(212, 175, 55, 0.1);
+  box-shadow: 
+    0 8px 30px rgba(212, 175, 55, 0.3),
+    inset 0 0 30px rgba(212, 175, 55, 0.05);
   transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 button:focus {
   outline: 2px solid var(--gold-light);
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
+/* Form Elements */
 input, textarea {
-  font-family: 'Roboto Slab', serif;
-  font-size: 1rem;
-  padding: 1rem 1.25rem;
-  background-color: rgba(2, 4, 2, 0.9);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  background-color: rgba(4, 8, 4, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   color: var(--text-gold);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 input:focus, textarea:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+  box-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.1),
+    inset 0 0 10px rgba(212, 175, 55, 0.02);
 }
 
 input::placeholder, textarea::placeholder {
-  color: var(--gold-muted);
-  opacity: 0.6;
+  color: var(--text-muted);
+  opacity: 0.7;
+  font-style: italic;
 }
 
-/* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(2, 4, 2, 0.95);
+  background: var(--dark-green-deep);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--dark-green-accent);
-  border: 2px solid rgba(2, 4, 2, 0.95);
+  background: linear-gradient(180deg, var(--dark-green-accent), var(--gold-dark));
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-dark);
+  background: linear-gradient(180deg, var(--gold-dark), var(--gold));
 }
 
-/* Selection */
+/* Text Selection */
 ::selection {
   background-color: var(--gold);
   color: var(--dark-green-deep);
+}
+
+::-moz-selection {
+  background-color: var(--gold);
+  color: var(--dark-green-deep);
+}
+
+/* Focus Visible for Accessibility */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Smooth transitions for theme elements */
+*, *::before, *::after {
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Disable transitions for elements that shouldn't animate */
+button *, input, textarea, a {
+  transition-property: all;
 }
