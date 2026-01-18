@@ -593,7 +593,7 @@ function App() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <span className="section-label">@baghrestaurant</span>
+          <span className="section-label">@baghpk</span>
           <h2>Follow Us on <span className="highlight">Instagram</span></h2>
           <p>
             Join our culinary community and stay updated with our latest creations, 
